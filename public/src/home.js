@@ -7,11 +7,11 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
-  let booksCheckedOut = books.filter(
-  (book) =>
-   book.borrows.filter((record) => record.returned === false).length > 0
- );
- return booksCheckedOut.length;
+  return books.reduce((borrowCount, { borrows }) => {
+    const mostRecent = borrows[0];
+    if (!mostRecent.returned) borrowCount++;
+    return borrowCount;
+  }, 0);
 }
 
 function getMostCommonGenres(books) {
