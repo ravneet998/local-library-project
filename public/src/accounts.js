@@ -1,18 +1,18 @@
-function findAccountById(accounts, id) {
-  let matchingId = accounts.find((account) => account.id === id);
+function findAccountById(accounts, id) { // returns the account object that has the matching ID
+  let matchingId = accounts.find((account) => account.id === id); // .find method looks for matching id 
   return matchingId;                                
 }
 
-function sortAccountsByLastName(accounts) {
+function sortAccountsByLastName(accounts) { // returns a sorted array of the provided account objects. the objects are sorted alphabetically by last name.
   accounts.sort((accountA, accountB) =>       accountA.name.last.toLowerCase() > accountB.name.last.toLowerCase() ? 1 : -1);
   return accounts;
 }
 
-function getTotalNumberOfBorrows(account, books) {
-  let totalBorrows = 0; 
+function getTotalNumberOfBorrows(account, books) { // returns a _number_ that represents the number of times the account's ID appears in any book's `borrows` array.
+  let totalBorrows = 0; // initialize a variable to 0 to increment
   for (let i = 0; i < books.length; i++) {
   for (let j = 0; j < books[i].borrows.length; j++) {
-   if (account.id === books[i].borrows[j].id) {
+   if (account.id === books[i].borrows[j].id) { // loop through books array to see if account id matches borrowed books id
     totalBorrows += 1;
    }
   }
